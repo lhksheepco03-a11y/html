@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문의 | 비에이텍㈜</title>
+    <title>기업소개 | 비에이텍㈜</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +23,12 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="intro.html">기업소개</a></li>
+                    <li><a href="intro.html" class="active">기업소개</a></li>
                     <li><a href="product.html">주요제품</a></li>
                     <li><a href="equipment.html">장비</a></li>
                     <li><a href="sales_history.html">업력</a></li>
                     <li><a href="map.html">찾아오시는 길</a></li>
-                    <li><a href="inquiry.html" class="active">문의</a></li>
+                    <li><a href="inquiry.html">문의</a></li>
                 </ul>
             </nav>
             <div class="hamburger" id="hamburgerBtn">
@@ -50,167 +50,232 @@
         <!-- Page Hero -->
         <section class="page-hero">
             <div>
-                <h1>제품 문의 / 견적 요청</h1>
-                <p>Inquiry & Estimate</p>
+                <h1>기업 소개</h1>
+                <p>Company Introduction</p>
             </div>
         </section>
 
-        <!-- Inquiry Section -->
+        <!-- Company Overview -->
         <section class="section">
-            <div class="inquiry-layout">
-                <!-- Form Container -->
-                <div class="inquiry-form-container">
-                    <h2 class="form-title">온라인 문의</h2>
-                    
-                    <form id="inquiryForm" action="#" onsubmit="submitForm(event)">
-                        <!-- Inquiry Type -->
-                        <div class="form-group">
-                            <label class="form-label">문의 유형 <span class="required">*</span></label>
-                            <div class="radio-group">
-                                <label class="custom-radio">
-                                    <input type="radio" name="inquiry_type" value="purchase" checked>
-                                    <span class="radio-mark"></span>
-                                    제품 구매 문의
-                                </label>
-                                <label class="custom-radio">
-                                    <input type="radio" name="inquiry_type" value="install">
-                                    <span class="radio-mark"></span>
-                                    설치 견적 요청
-                                </label>
-                                <label class="custom-radio">
-                                    <input type="radio" name="inquiry_type" value="repair">
-                                    <span class="radio-mark"></span>
-                                    수리·유지보수
-                                </label>
-                                <label class="custom-radio">
-                                    <input type="radio" name="inquiry_type" value="other">
-                                    <span class="radio-mark"></span>
-                                    기타
-                                </label>
-                            </div>
-                        </div>
+            <div class="section-header" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                <h2 class="section-title" style="margin-bottom: 0;">회사 개요</h2>
+                <a href="지명원 (1).pdf" target="_blank" class="btn btn-primary" style="font-size: 1rem; padding: 8px 16px;">
+                    <i class="fas fa-file-pdf"></i> 회사 지명원 보기
+                </a>
+            </div>
+            <table class="overview-table">
+                <tbody>
+                    <tr>
+                        <th>회사명</th>
+                        <td>비에이텍㈜ (Blue Advanced Technology Co., Ltd.)</td>
+                    </tr>
+                    <tr>
+                        <th>대표이사</th>
+                        <td>조세연</td>
+                    </tr>
+                    <tr>
+                        <th>설립일</th>
+                        <td>2010년 11월 01일</td>
+                    </tr>
+                    <tr>
+                        <th>사업자등록번호</th>
+                        <td>221-81-42625</td>
+                    </tr>
+                    <tr>
+                        <th>업종</th>
+                        <td>제조업, 도매업</td>
+                    </tr>
+                    <tr>
+                        <th>주요생산제품</th>
+                        <td>모터펌프 (벌류트펌프, 수중펌프, 부스터펌프 외)</td>
+                    </tr>
+                    <tr>
+                        <th>소재지</th>
+                        <td>강원특별자치도 춘천시 퇴계공단2길 64 (퇴계제2농공단지내)</td>
+                    </tr>
+                    <tr>
+                        <th>전화/팩스</th>
+                        <td>TEL: 033-264-9243 / FAX: 033-251-5747</td>
+                    </tr>
+                    <tr>
+                        <th>공장면적</th>
+                        <td>부지 1,970.3㎡ / 제조시설 494㎡ / 부대시설 280㎡</td>
+                    </tr>
+                    <tr>
+                        <th>종업원</th>
+                        <td>남 5명, 여 2명</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="form-group">
-                                <label for="companyName" class="form-label">회사/기관명 <span class="required">*</span></label>
-                                <input type="text" id="companyName" name="companyName" class="form-control" required placeholder="회사 또는 기관명을 입력하세요">
-                            </div>
-                            <div class="form-group">
-                                <label for="managerName" class="form-label">담당자명 <span class="required">*</span></label>
-                                <input type="text" id="managerName" name="managerName" class="form-control" required placeholder="성함을 입력하세요">
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="form-group">
-                                <label for="contact" class="form-label">연락처 <span class="required">*</span></label>
-                                <input type="tel" id="contact" name="contact" class="form-control" required placeholder="예) 010-1234-5678">
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="form-label">이메일</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="답변 받으실 이메일 주소">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">관심 제품 (다중 선택 가능)</label>
-                            <div class="checkbox-group">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="벌류트펌프">
-                                    <span class="check-mark"></span>
-                                    벌류트펌프
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="수중펌프">
-                                    <span class="check-mark"></span>
-                                    수중펌프
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="부스터펌프">
-                                    <span class="check-mark"></span>
-                                    부스터펌프
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="오수펌프">
-                                    <span class="check-mark"></span>
-                                    오수펌프
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="슬러지펌프">
-                                    <span class="check-mark"></span>
-                                    슬러지펌프
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="심정용펌프">
-                                    <span class="check-mark"></span>
-                                    심정용펌프
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="정량펌프">
-                                    <span class="check-mark"></span>
-                                    정량펌프
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product" value="기타">
-                                    <span class="check-mark"></span>
-                                    기타
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="content" class="form-label">문의 내용 <span class="required">*</span></label>
-                            <textarea id="content" name="content" class="form-control" rows="5" required placeholder="제품 사양, 사용 목적, 설치 장소 등 상세한 내용을 적어주시면 더욱 빠르고 정확한 상담이 가능합니다."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">개인정보 수집 및 이용 동의 <span class="required">*</span></label>
-                            <div class="privacy-box">
-                                비에이텍㈜는 고객님의 문의 처리를 위해 아래와 같이 개인정보를 수집 및 이용합니다.<br><br>
-                                1. 수집 항목: 회사/기관명, 담당자명, 연락처, 이메일<br>
-                                2. 수집 및 이용 목적: 문의에 대한 답변 및 상담 진행<br>
-                                3. 보유 및 이용 기간: 목적 달성 후 1년 이내 파기 (단, 관계 법령에 의해 보존할 필요가 있는 경우 해당 기간 동안 보존)
-                            </div>
-                            <label class="custom-checkbox" style="margin-top: 10px;">
-                                <input type="checkbox" id="privacyAgree" required>
-                                <span class="check-mark"></span>
-                                개인정보 수집 및 이용에 동의합니다.
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn-submit">
-                            문의 접수하기 <i class="fas fa-paper-plane" style="margin-left: 5px;"></i>
-                        </button>
-                    </form>
+        <!-- Vision Section -->
+        <section class="section vision-section" style="max-width: 100%;">
+            <div class="section" style="padding: 40px 20px;">
+                <div class="vision-slogan">
+                    "깨끗한 물을 위한 기술, 신뢰를 위한 품질"
                 </div>
+                <div class="vision-cards">
+                    <div class="vision-card">
+                        <div class="vision-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>기술혁신</h3>
+                        <p style="margin-top: 10px; color: var(--gray-dark);">끊임없는 연구개발을 통해 더 나은 솔루션을 제공합니다.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon"><i class="fas fa-medal"></i></div>
+                        <h3>품질경영</h3>
+                        <p style="margin-top: 10px; color: var(--gray-dark);">엄격한 품질 관리로 최고의 제품만을 생산합니다.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>고객신뢰</h3>
+                        <p style="margin-top: 10px; color: var(--gray-dark);">고객의 만족을 최우선으로 생각하며 상생을 추구합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <!-- Contact Sidebar -->
-                <div class="contact-sidebar">
-                    <h3>다이렉트 고객센터</h3>
-                    <p style="margin-bottom: 30px; opacity: 0.9; line-height: 1.5;">온라인 문의가 번거로우시다면 직접 연락주세요. 펌프 전문가가 친절하게 상담해 드립니다.</p>
-                    
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon"><i class="fas fa-phone-volume"></i></div>
-                        <div class="contact-info-text">
-                            <strong>전화 문의</strong>
-                            <div style="font-size: 1.8rem; font-weight: 700; font-family: 'Montserrat', sans-serif;">033-264-9243</div>
+        <!-- Organization Chart -->
+        <section class="section" style="background-color: var(--bg-color); max-width: 100%;">
+            <div class="section" style="padding: 40px 20px;">
+                <div class="section-header" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                    <h2 class="section-title" style="margin-bottom: 0;">조직도</h2>
+                    <a href="홈페이지자료/조직도 및 업무분장.xlsx" class="btn btn-primary" style="font-size: 1rem; padding: 8px 16px;">
+                        <i class="fas fa-file-excel"></i> 조직도 및 업무분장 엑셀 파일 다운로드
+                    </a>
+                </div>
+                <div class="org-chart">
+                    <div class="org-tree">
+                        <div class="org-node ceo">
+                            <div class="org-title">대표이사</div>
+                            <div class="org-desc">CEO</div>
+                        </div>
+                        <div class="org-level">
+                            <div class="org-level-group">
+                                <div class="org-branch">
+                                    <div class="org-node">
+                                        <div class="org-title">경영지원부</div>
+                                        <div class="org-desc">기획 · 총무 · 인사</div>
+                                    </div>
+                                </div>
+                                <div class="org-branch">
+                                    <div class="org-node">
+                                        <div class="org-title">영업부</div>
+                                        <div class="org-desc">마케팅 · 국내/해외영업</div>
+                                    </div>
+                                </div>
+                                <div class="org-branch">
+                                    <div class="org-node">
+                                        <div class="org-title">생산부</div>
+                                        <div class="org-desc">제조설비 · 자재 · 물류</div>
+                                    </div>
+                                </div>
+                                <div class="org-branch">
+                                    <div class="org-node">
+                                        <div class="org-title">품질관리부</div>
+                                        <div class="org-desc">기술연구 · 검사 · CS</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon"><i class="fas fa-fax"></i></div>
-                        <div class="contact-info-text">
-                            <strong>팩스</strong>
-                            <div>033-251-5747</div>
-                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company History -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">연혁</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2010.11.01</div>
+                        <div class="timeline-text">㈜강원유체 설립</div>
                     </div>
-                    
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon"><i class="fas fa-clock"></i></div>
-                        <div class="contact-info-text">
-                            <strong>운영시간</strong>
-                            <div>평일 09:00 ~ 18:00<br><span style="font-size: 0.9rem; opacity: 0.8;">(점심시간 12:00 ~ 13:00)</span><br>토·일·공휴일 휴무</div>
-                        </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2012.12.10</div>
+                        <div class="timeline-text">벤처기업인증 (중소기업청)</div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2013.02.19</div>
+                        <div class="timeline-text">상호 변경: ㈜강원유체 → 비에이텍㈜<br>대표자 변경</div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2015.01.07</div>
+                        <div class="timeline-text">한국펌프공업협동조합 조합원 가입 (제151호)</div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2017.12.29</div>
+                        <div class="timeline-text">강원도지사 표창 수상</div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023.06.08</div>
+                        <div class="timeline-text">공장등록 갱신</div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024.08.23</div>
+                        <div class="timeline-text">ISO 9001:2015 인증<br>(인증번호 QI291124, ~2027.08.22)</div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024.08.28</div>
+                        <div class="timeline-text">경영혁신형 중소기업(Main-Biz) 선정<br>(~2027.09.13)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">인증 현황</h2>
+            </div>
+            <div class="cert-cards">
+                <a href="ISO9001인증서.pdf" target="_blank" class="cert-card" style="text-decoration: none; cursor: pointer;" title="클릭하여 인증서 보기">
+                    <div class="cert-card-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="cert-card-info">
+                        <h4>ISO 9001:2015</h4>
+                        <p>발급기관: G-CERTI</p>
+                        <p>유효기간: ~ 2027.08.22</p>
+                    </div>
+                </a>
+                <a href="홈페이지자료/메인비즈 확인서(기한27.09.13.).pdf" target="_blank" class="cert-card" style="text-decoration: none; cursor: pointer;" title="클릭하여 인증서 보기">
+                    <div class="cert-card-icon"><i class="fas fa-award"></i></div>
+                    <div class="cert-card-info">
+                        <h4>경영혁신형 중소기업 (Main-Biz)</h4>
+                        <p>발급기관: 중소벤처기업부</p>
+                        <p>유효기간: ~ 2027.09.13</p>
+                    </div>
+                </a>
+                <a href="KC인증서.pdf" target="_blank" class="cert-card" style="text-decoration: none; cursor: pointer;" title="클릭하여 인증서 보기">
+                    <div class="cert-card-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="cert-card-info">
+                        <h4>KC 인증서</h4>
+                        <p>안전인증대상</p>
+                        <p>분류: 펌프류</p>
+                    </div>
+                </a>
+                <div class="cert-card">
+                    <div class="cert-card-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="cert-card-info">
+                        <h4>벤처기업확인서</h4>
+                        <p>발급기관: 기술보증기금</p>
+                        <p>분류: 기술평가보증기업</p>
                     </div>
                 </div>
             </div>
@@ -252,46 +317,6 @@
                 icon.classList.add('fa-bars');
             }
         });
-
-        // Parse query params (if came from product page)
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const product = urlParams.get('product');
-            
-            if (product) {
-                // Try to find checkbox with that product value
-                const checkboxes = document.querySelectorAll('input[name="product"]');
-                let found = false;
-                
-                checkboxes.forEach(cb => {
-                    if (cb.value === product || product.includes(cb.value)) {
-                        cb.checked = true;
-                        found = true;
-                    }
-                });
-                
-                // If not found in standard list, set "Others" and add to content
-                if (!found) {
-                    const otherCb = document.querySelector('input[name="product"][value="기타"]');
-                    if (otherCb) otherCb.checked = true;
-                    
-                    const contentArea = document.getElementById('content');
-                    contentArea.value = `[관심제품: ${product}]\n\n`;
-                }
-            }
-        });
-
-        // Form Submit
-        function submitForm(e) {
-            e.preventDefault(); // Prevent actual form submission for demo
-            
-            if (document.getElementById('privacyAgree').checked) {
-                alert("문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.");
-                document.getElementById('inquiryForm').reset();
-            } else {
-                alert("개인정보 수집 및 이용에 동의해 주세요.");
-            }
-        }
     </script>
 </body>
 </html>
