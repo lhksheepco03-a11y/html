@@ -17,19 +17,23 @@
         .hero {
             background-position: center center !important;
             background-size: cover !important;
+            background-repeat: no-repeat !important;
             display: flex !important;
+            flex-direction: column !important;
             align-items: center !important;
             justify-content: center !important;
             text-align: center !important;
+            overflow: hidden !important;
         }
         .hero-content {
             width: 100%;
         }
         .hero .wave-container {
             width: 100%;
+            left: 0;
+            margin: 0 auto;
             position: absolute;
             bottom: 0;
-            left: 0;
         }
         .hero .wave-container svg {
             transform: scaleX(1) !important;
@@ -39,7 +43,7 @@
         /* 추가 CSS - 캠페인 영상 섹션 */
         .campaign-video-section {
             padding: 60px 0;
-            background-color: #0a1628;
+            background: transparent !important;
             text-align: center;
         }
         .campaign-video-section .section-title {
@@ -97,7 +101,7 @@
         /* 추가 CSS - 카드뉴스 슬라이더 섹션 */
         .card-news-section {
             padding: 60px 0;
-            background-color: #0a1628;
+            background: transparent !important;
             text-align: center;
         }
         .card-news-title {
@@ -141,20 +145,24 @@
         }
         .slider-container {
             overflow: hidden;
+            width: min(480px, 90vw);
+            margin: 0 auto;
             border-radius: 16px;
             position: relative;
-            width: 100%;
         }
         .slider-track {
             display: flex;
+            width: calc(100% * 7);
             transition: transform 0.4s ease-in-out;
-            width: 100%;
         }
         .slider-track img.slide {
-            flex: 0 0 100%;
-            width: 100%;
+            width: calc(100% / 7);
+            flex-shrink: 0;
+            height: auto;
             aspect-ratio: 1 / 1;
             object-fit: contain;
+            display: block;
+            border-radius: 16px;
             background-color: #ffffff;
         }
         .slider-btn {
@@ -261,13 +269,21 @@
 
         <!-- Campaign Video Section -->
         <section class="campaign-video-section">
-            <h2 class="section-title">비에이텍 캠페인 영상</h2>
+            <h2 class="section-title">비에이텍 광고영상</h2>
             <div class="video-wrapper">
                 <div class="video-inner">
-                    <!-- src: ./video/campaign.mp4 -->
-                    <video id="campaignVideo" controls preload="metadata" poster="./video/thumbnail.jpg">
+                    <!-- 영상 파일 위치: 프로젝트루트/video/campaign.mp4 -->
+                    <!-- 파일명이 다를 경우 src 경로만 수정하세요 -->
+                    <video
+                        id="campaignVideo"
+                        width="100%"
+                        style="max-width:720px; border-radius:16px; border:1px solid #1a9ea0; display:block; margin:0 auto;"
+                        preload="metadata"
+                        playsinline
+                        controls
+                    >
                         <source src="./video/campaign.mp4" type="video/mp4">
-                        브라우저가 동영상을 지원하지 않습니다.
+                        이 브라우저는 video 태그를 지원하지 않습니다.
                     </video>
                     <div class="video-overlay" id="videoOverlay">
                         <div class="play-button"><i class="fas fa-play"></i></div>
@@ -471,40 +487,30 @@
             }
         });
         // Video Logic
-        const campaignVideo = document.getElementById('campaignVideo');
-        const videoOverlay = document.getElementById('videoOverlay');
+        const video = document.getElementById('campaignVideo');
+        const overlay = document.getElementById('videoOverlay');
 
-        function toggleVideo() {
-            if (campaignVideo.paused) {
-                campaignVideo.play();
-            } else {
-                campaignVideo.pause();
-            }
-        }
-
-        if(videoOverlay && campaignVideo) {
-            videoOverlay.addEventListener('click', toggleVideo);
-            
-            campaignVideo.addEventListener('play', () => {
-                videoOverlay.classList.add('hidden');
+        if (overlay && video) {
+            // 오버레이 클릭 시 재생
+            overlay.addEventListener('click', () => {
+                video.play().then(() => {
+                    overlay.style.display = 'none';
+                }).catch(err => {
+                    console.error('재생 실패:', err);
+                });
             });
 
-            campaignVideo.addEventListener('pause', () => {
-                videoOverlay.classList.remove('hidden');
-            });
-
-            campaignVideo.addEventListener('ended', () => {
-                campaignVideo.pause();
-                campaignVideo.currentTime = 0;
-                videoOverlay.classList.remove('hidden');
-            });
-
-            campaignVideo.addEventListener('timeupdate', () => {
-                if (campaignVideo.currentTime >= 10) {
-                    campaignVideo.pause();
-                    campaignVideo.currentTime = 0;
-                    videoOverlay.classList.remove('hidden');
+            // 일시정지 시 오버레이 재표시
+            video.addEventListener('pause', () => {
+                if (!video.ended) {
+                    overlay.style.display = 'flex';
                 }
+            });
+
+            // 영상 종료 시 오버레이 재표시
+            video.addEventListener('ended', () => {
+                overlay.style.display = 'flex';
+                video.currentTime = 0;
             });
         }
 
