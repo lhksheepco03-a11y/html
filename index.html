@@ -12,6 +12,201 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 추가 CSS - 히어로 섹션 배경 대칭 수정 */
+        .hero {
+            background-position: center center !important;
+            background-size: cover !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+        .hero-content {
+            width: 100%;
+        }
+        .hero .wave-container {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .hero .wave-container svg {
+            transform: scaleX(1) !important;
+            width: 100%;
+        }
+
+        /* 추가 CSS - 캠페인 영상 섹션 */
+        .campaign-video-section {
+            padding: 60px 0;
+            background-color: #0a1628;
+            text-align: center;
+        }
+        .campaign-video-section .section-title {
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+        .video-wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .video-inner {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #1a9ea0;
+            background-color: #000;
+        }
+        .video-inner video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: block;
+            cursor: pointer;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .video-overlay .play-button {
+            width: 64px;
+            height: 64px;
+            background-color: #1a9ea0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 24px;
+            padding-left: 5px;
+        }
+
+        /* 추가 CSS - 카드뉴스 슬라이더 섹션 */
+        .card-news-section {
+            padding: 60px 0;
+            background-color: #0a1628;
+            text-align: center;
+        }
+        .card-news-title {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            padding: 0 20px;
+            word-break: keep-all;
+        }
+        .card-news-title .highlight {
+            color: #4ecdc4;
+        }
+        .slider-wrapper {
+            position: relative;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        @media (min-width: 480px) {
+            .slider-wrapper {
+                padding: 0;
+            }
+        }
+        .slider-counter {
+            position: absolute;
+            top: 10px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+        @media (min-width: 480px) {
+            .slider-counter {
+                right: 10px;
+            }
+        }
+        .slider-container {
+            overflow: hidden;
+            border-radius: 16px;
+            position: relative;
+            width: 100%;
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+        .slider-track img.slide {
+            flex: 0 0 100%;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background-color: #ffffff;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: opacity 0.3s;
+        }
+        .slider-btn.prev-btn {
+            left: 30px;
+        }
+        .slider-btn.next-btn {
+            right: 30px;
+        }
+        @media (min-width: 480px) {
+            .slider-btn.prev-btn { left: 10px; }
+            .slider-btn.next-btn { right: 10px; }
+        }
+        .slider-btn.disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+        .slider-dots {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .slider-dots .dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .slider-dots .dot.active {
+            background-color: #1a9ea0;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -61,6 +256,53 @@
                 <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,136.24,129.41,208.62,119.5,247.4,114.16,285.49,94.84,321.39,56.44Z" class="shape-fill"></path>
                 </svg>
+            </div>
+        </section>
+
+        <!-- Campaign Video Section -->
+        <section class="campaign-video-section">
+            <h2 class="section-title">비에이텍 캠페인 영상</h2>
+            <div class="video-wrapper">
+                <div class="video-inner">
+                    <!-- src: ./video/campaign.mp4 -->
+                    <video id="campaignVideo" controls preload="metadata" poster="./video/thumbnail.jpg">
+                        <source src="./video/campaign.mp4" type="video/mp4">
+                        브라우저가 동영상을 지원하지 않습니다.
+                    </video>
+                    <div class="video-overlay" id="videoOverlay">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Card News Slider Section -->
+        <section class="card-news-section">
+            <h2 class="card-news-title">비에이텍과 함께하는 <span class="highlight">물 활용</span> 캠페인 카드뉴스</h2>
+            <div class="slider-wrapper">
+                <div class="slider-counter"><span id="currentSlide">1</span> / 7</div>
+                <div class="slider-container" id="sliderContainer">
+                    <div class="slider-track" id="sliderTrack">
+                        <img src="./카드뉴스/카드뉴스1.png" alt="카드뉴스 1" loading="lazy" class="slide">
+                        <img src="./카드뉴스/카드뉴스_2.png" alt="카드뉴스 2" loading="lazy" class="slide">
+                        <img src="./카드뉴스/카드뉴스_3.png" alt="카드뉴스 3" loading="lazy" class="slide">
+                        <img src="./카드뉴스/카드뉴스_4.png" alt="카드뉴스 4" loading="lazy" class="slide">
+                        <img src="./카드뉴스/카드뉴스_5.png" alt="카드뉴스 5" loading="lazy" class="slide">
+                        <img src="./카드뉴스/카드뉴스_6.png" alt="카드뉴스 6" loading="lazy" class="slide">
+                        <img src="./카드뉴스/카드뉴스_7.png" alt="카드뉴스 7" loading="lazy" class="slide">
+                    </div>
+                </div>
+                <button class="slider-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-dots" id="sliderDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+                <span class="dot" data-index="5"></span>
+                <span class="dot" data-index="6"></span>
             </div>
         </section>
 
@@ -228,6 +470,130 @@
                 icon.classList.add('fa-bars');
             }
         });
+        // Video Logic
+        const campaignVideo = document.getElementById('campaignVideo');
+        const videoOverlay = document.getElementById('videoOverlay');
+
+        function toggleVideo() {
+            if (campaignVideo.paused) {
+                campaignVideo.play();
+            } else {
+                campaignVideo.pause();
+            }
+        }
+
+        if(videoOverlay && campaignVideo) {
+            videoOverlay.addEventListener('click', toggleVideo);
+            
+            campaignVideo.addEventListener('play', () => {
+                videoOverlay.classList.add('hidden');
+            });
+
+            campaignVideo.addEventListener('pause', () => {
+                videoOverlay.classList.remove('hidden');
+            });
+
+            campaignVideo.addEventListener('ended', () => {
+                campaignVideo.pause();
+                campaignVideo.currentTime = 0;
+                videoOverlay.classList.remove('hidden');
+            });
+
+            campaignVideo.addEventListener('timeupdate', () => {
+                if (campaignVideo.currentTime >= 10) {
+                    campaignVideo.pause();
+                    campaignVideo.currentTime = 0;
+                    videoOverlay.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Slider Logic
+        const sliderTrack = document.getElementById('sliderTrack');
+        const sliderContainerEl = document.getElementById('sliderContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentSlideText = document.getElementById('currentSlide');
+        const dots = document.querySelectorAll('.dot');
+        let currentIdx = 0;
+        const totalSlides = 7;
+
+        function updateSlider() {
+            if(!sliderTrack) return;
+            sliderTrack.style.transform = `translateX(-${currentIdx * 100}%)`;
+            currentSlideText.innerText = currentIdx + 1;
+            
+            dots.forEach((dot, idx) => {
+                if(idx === currentIdx) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+
+            if (currentIdx === 0) {
+                prevBtn.classList.add('disabled');
+            } else {
+                prevBtn.classList.remove('disabled');
+            }
+
+            if (currentIdx === totalSlides - 1) {
+                nextBtn.classList.add('disabled');
+            } else {
+                nextBtn.classList.remove('disabled');
+            }
+        }
+
+        if(prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentIdx > 0) {
+                    currentIdx--;
+                    updateSlider();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIdx < totalSlides - 1) {
+                    currentIdx++;
+                    updateSlider();
+                }
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    currentIdx = idx;
+                    updateSlider();
+                });
+            });
+
+            // keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    if (currentIdx > 0) { currentIdx--; updateSlider(); }
+                } else if (e.key === 'ArrowRight') {
+                    if (currentIdx < totalSlides - 1) { currentIdx++; updateSlider(); }
+                }
+            });
+
+            // touch support
+            let startX = 0;
+            let endX = 0;
+            sliderContainerEl.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, {passive: true});
+            sliderContainerEl.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const threshold = 40;
+                if (startX - endX > threshold) {
+                    if (currentIdx < totalSlides - 1) { currentIdx++; updateSlider(); }
+                } else if (endX - startX > threshold) {
+                    if (currentIdx > 0) { currentIdx--; updateSlider(); }
+                }
+            }
+
+            updateSlider();
+        }
     </script>
 </body>
 </html>
